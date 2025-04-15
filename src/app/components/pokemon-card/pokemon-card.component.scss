@@ -1,6 +1,7 @@
 :host ::ng-deep {
-  .p-card {
+  .pokemon-card-hover {
     cursor: pointer;
+
     &:hover {
       background-color: rgba(5, 107, 190, 0.616);
     }

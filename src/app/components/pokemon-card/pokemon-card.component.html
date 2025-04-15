@@ -1,9 +1,22 @@
-<div class="flex items-center justify-center">
-  <p-card [style]="{ width: '12rem', overflow: 'hidden' }">
+<div class="flex items-center justify-center w-100" id="card-container" >
+  <p-card [style]="{overflow: 'hidden' }" [style.width]="extraData ? '100%' : '12rem'" [class]="extraData ? '' : 'pokemon-card-hover'">
     <ng-template #header>
       <img alt="Card" class="w-full" [src]="imageUrl" />
     </ng-template>
     <ng-template #title> {{ name }}</ng-template>
     <ng-template #subtitle> {{ id }}</ng-template>
+    <ng-template #content *ngIf="extraData">
+      <div class="flex flex-column align-items-center justify-content-center">
+        <span>Tipo de personaje: {{ extraData.type }}</span>
+        <span>Peso: {{ extraData.weight + ' kg' }}</span>
+        <div *ngIf="extraData?.sprites" class="flex flex-column align-items-center justify-content-center">
+          <span>Sprites: </span>
+          <img [src]="extraData.sprites.front_default" alt="">
+          <img [src]="extraData.sprites.back_default" alt="">
+          <img [src]="extraData.sprites.back_shiny" alt="">
+          <img [src]="extraData.sprites.front_shiny" alt="">
+        </div>
+      </div>
+    </ng-template>
   </p-card>
 </div>

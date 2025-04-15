@@ -1,0 +1,9 @@
+<div class="flex items-center justify-center">
+  <p-card [style]="{ width: '12rem', overflow: 'hidden' }">
+    <ng-template #header>
+      <img alt="Card" class="w-full" [src]="imageUrl" />
+    </ng-template>
+    <ng-template #title> {{ name }}</ng-template>
+    <ng-template #subtitle> {{ id }}</ng-template>
+  </p-card>
+</div>

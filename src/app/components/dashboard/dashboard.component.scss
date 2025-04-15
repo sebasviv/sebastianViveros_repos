@@ -1,3 +1,12 @@
-:host {
+:host ::ng-deep {
   --p-card-background: rgba(23, 129, 172, 0.692);
+
+  .p-card {
+    width: 100%;
+  }
+
+  .row {
+    overflow: hidden;
+    margin: 0 ;
+  }
 }

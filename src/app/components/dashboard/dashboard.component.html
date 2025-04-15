@@ -1,5 +1,5 @@
 <div class="row">
-  <div [class]="pokemonSelected ? 'col-8' : 'col-12'">
+  <div [class]="pokemonSelected ? 'w-75' : 'w-100'" class="p-0 ">
     <p-card header="Simple Card" class="bg-blue-100">
       <div class="d-flex gap-2 align-items-center">
         <input type="text" pInputText [(ngModel)]="inputCharacter" [style.width]="'100%'" />
@@ -13,14 +13,14 @@
       </div>
     </p-card>
     <div class="card flex justify-center">
-      <p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="10" [totalRecords]="totalPokemons"  />
-  </div>
+      <p-paginator (onPageChange)="onPageChange($event)" [first]="0" [rows]="10" [totalRecords]="totalPokemons" />
+    </div>
   </div>
   <div class="col-4" *ngIf="pokemonSelected">
     <p-card header="Simple Card">
       <div class="d-flex flex-column align-items-center justify-content-center">
-        <app-pokemon-card [id]="pokemonSelected.id" [name]="pokemonSelected.name"
-          [imageUrl]="pokemonSelected.imageUrl" [extraData]="pokemonSelected.extraData"></app-pokemon-card>
+        <app-pokemon-card [id]="pokemonSelected.id" [name]="pokemonSelected.name" [imageUrl]="pokemonSelected.imageUrl"
+          [extraData]="pokemonSelected.extraData"></app-pokemon-card>
       </div>
     </p-card>
   </div>

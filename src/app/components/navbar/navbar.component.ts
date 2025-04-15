@@ -13,14 +13,17 @@ export class NavbarComponent {
     {
       label: "Dashboard",
       icon: "pi pi-fw pi-home",
+      routerLink: ['/home']
     },
     {
       label: "Crea tu Pokemon",
       icon: "pi pi-plus",
+      routerLink: ['/create-character']
     },
     {
       label: "Tus Pokemon",
       icon: "pi pi-heart",
+      routerLink: ['/favorites']
     },
   ]
 }

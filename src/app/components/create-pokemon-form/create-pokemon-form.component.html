@@ -1,0 +1,9 @@
+<p>create-pokemon-form works!</p>
+<div>
+  <form [formGroup]="pokemonForm">
+    <div class="card flex justify-center">
+      <p-select [options]="pokemonTypes" formArrayName="type" optionLabel="label" optionValue="value"
+        placeholder="Seleccione el tipo" class="w-full md:w-56" />
+    </div>
+  </form>
+</div>

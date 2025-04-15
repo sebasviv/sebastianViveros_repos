@@ -7,6 +7,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class PokemonService {
   apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  apiUrlTypes = 'https://pokeapi.co/api/v2/type/';
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,16 @@ export class PokemonService {
         console.error('Error fetching Pokemon data:', error);
         return throwError(
           () => new Error('Error fetching Pokemon data' + error.message)
+        );
+      })
+    );
+  }
+  getPokemonTypes() {
+    return this.http.get(`${this.apiUrlTypes}`).pipe(
+      catchError((error) => {
+        console.error('Error fetching Pokemon types:', error);
+        return throwError(
+          () => new Error('Error fetching Pokemon types' + error.message)
         );
       })
     );

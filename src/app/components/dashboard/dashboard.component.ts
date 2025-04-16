@@ -9,7 +9,7 @@ import { IPokemonCharacter } from '../../models/pokemon.model';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { totalPokemonCount } from '../../shared/signals/pokemon-signals';
 @Component({
   selector: 'app-dashboard',
   imports: [
@@ -28,6 +28,7 @@ import { PaginatorModule } from 'primeng/paginator';
 export class DashboardComponent {
   inputCharacter: string = '';
   pokemonsList: IPokemonCharacter[] = [];
+  pokemonFavorites: IPokemonCharacter[] = [];
   limit: number = 10;
   page: number = 1;
   private readonly pokemonService = inject(PokemonService);
@@ -36,6 +37,7 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.handleGetAllPokemons();
+    this.handleGetPokemonsLocalStorage();
   }
 
   handleGetAllPokemons() {
@@ -47,6 +49,7 @@ export class DashboardComponent {
         );
 
         this.totalPokemons = data.count;
+        totalPokemonCount.set(this.totalPokemons);
 
         forkJoin(requests).subscribe((responses: any) => {
           this.pokemonsList = responses.map((pokemonInfo: any) => ({
@@ -95,29 +98,55 @@ export class DashboardComponent {
     this.handleGetAllPokemons();
   }
 
+  handleGetPokemonsLocalStorage() {
+    const stored = localStorage.getItem('myPokemons');
+    const pokemonsLocalStorage: any[] = stored ? JSON.parse(stored) : [];
+    const pokemonsData = pokemonsLocalStorage.map((pokemon) => {
+      return {
+        imageUrl: pokemon.extraData.sprites.front_default,
+        name: pokemon.name,
+        id: pokemon.id,
+        extraData: pokemon.extraData,
+      };
+    });
+
+    this.pokemonFavorites = pokemonsData;
+  }
+
   handleSearchCharacter() {
     if (this.inputCharacter) {
+      let pokemon: any = null
+
       this.pokemonService.getPokemonCharacter(this.inputCharacter).subscribe({
         next: (data: any) => {
-          if (data)
-            this.pokemonsList = [
-              {
-                imageUrl: data.sprites.front_default,
-                name: data.name,
-                id: data.id,
-                extraData: {
-                  type: data.types[0].type.name,
-                  weight: data.weight,
-                  sprites: data.sprites,
-                  moves: data.moves,
-                },
-              },
-            ];
-        },
-        error: (error) => {
-          console.error('Error fetching Pokemon data:', error);
+          pokemon = data
         },
       });
+
+      if (pokemon !== null) {
+        this.pokemonsList = [
+          {
+            imageUrl: pokemon.sprites.front_default,
+            name: pokemon.name,
+            id: pokemon.id,
+            extraData: {
+              type: pokemon.types[0].type.name,
+              weight: pokemon.weight,
+              sprites: pokemon.sprites,
+              moves: pokemon.moves,
+            },
+          },
+        ];
+      } else {
+        const pokemon = this.pokemonFavorites.find(
+          (p) => p.name === this.inputCharacter
+        );
+        if (pokemon) {
+          this.pokemonsList = [pokemon];
+        } else {
+          this.pokemonsList = [];
+        }
+      }
     } else {
       this.handleGetAllPokemons();
     }

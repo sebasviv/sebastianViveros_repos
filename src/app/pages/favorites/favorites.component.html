@@ -1,1 +1,11 @@
-<p>favorites works!</p>
+<div class="row">
+  <div class="p-0 ">
+    <p-card header="Simple Card" class="bg-blue-100">
+      <div class="d-flex flex-wrap gap-3 justify-content-center align-items-center mt-5">
+        <div *ngFor="let pokemon of pokemons">
+          <app-pokemon-card [id]="pokemon.id" [name]="pokemon.name" [imageUrl]="pokemon.imageUrl"></app-pokemon-card>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

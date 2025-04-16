@@ -1,9 +1,43 @@
 <p>create-pokemon-form works!</p>
 <div>
-  <form [formGroup]="pokemonForm">
-    <div class="card flex justify-center">
-      <p-select [options]="pokemonTypes" formArrayName="type" optionLabel="label" optionValue="value"
+  <form [formGroup]="pokemonForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-4">
+    <div class="card flex justify-center gap-4">
+      <p-floatlabel>
+        <input pInputText id="name" formControlName="name" autocomplete="off" />
+        <label for="name">Nombre</label>
+      </p-floatlabel>
+      <p-select [options]="pokemonTypes" formControlName="type" optionLabel="label" optionValue="value"
         placeholder="Seleccione el tipo" class="w-full md:w-56" />
+      <p-select [options]="pokemonWeights" formControlName="weight" optionLabel="label" optionValue="value"
+        placeholder="Seleccione el peso" class="w-full md:w-56" />
+
+      <h2>Sprites</h2>
+      <div class="d-flex flex-column gap-4">
+        <p-floatlabel>
+          <input pInputText id="sprite_front_default" formControlName="sprite_front_default" autocomplete="off" />
+          <label for="sprite_front_default">Front Default</label>
+        </p-floatlabel>
+        <p-floatlabel>
+          <input pInputText id="sprite_back_default" formControlName="sprite_back_default" autocomplete="off" />
+          <label for=" sprite_back_default">Back Default</label>
+        </p-floatlabel>
+        <p-floatlabel>
+          <input pInputText id="sprite_front_shiny" formControlName="sprite_front_shiny" autocomplete="off" />
+          <label for="sprite_front_shiny">Front Shiny</label>
+        </p-floatlabel>
+        <p-floatlabel>
+          <input pInputText id="sprite_back_shiny" formControlName="sprite_back_shiny" autocomplete="off" />
+          <label for="sprite_back_shiny">Back Shiny</label>
+        </p-floatlabel>
+      </div>
+      <p-select [options]="pokemonMoves" formControlName="move" optionLabel="label" optionValue="value"
+        placeholder="Seleccione el movimiento" class="w-full md:w-56" />
+    </div>
+
+    <div class="card flex justify-center gap-4 mt-4">
+      <p-button label="Crear Pokemon" icon="pi pi-check" type="submit"
+        [disabled]="!pokemonForm.valid"></p-button>
+      <p-button label="Limpiar" icon="pi pi-refresh" (click)="onReset()"></p-button>
     </div>
   </form>
 </div>

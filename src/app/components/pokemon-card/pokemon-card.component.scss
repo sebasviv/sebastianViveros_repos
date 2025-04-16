@@ -1,9 +1,40 @@
 :host ::ng-deep {
+  .p-card {
+    background-color: transparent;
+    color: #444444;
+    height: 100%;
+    .p-card-subtitle {
+      color: #444444;
+    }
+  }
+
+  .pokemon-card {
+    border-radius: 8px;
+    background-color: var(--bg-custom-color);
+    border: 2px var(--border-custom-color) solid;
+
+    .pokemon-img {
+      background-color: #ffffff;
+      margin: 1rem;
+      width: 100%;
+      border-radius: 8px;
+    }
+  }
+
   .pokemon-card-hover {
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(5, 107, 190, 0.616);
+      background-color: var(--border-custom-color);
+    }
+  }
+
+  .custom-sprites {
+
+    img {
+      border: 1px solid var(--border-custom-color);
+      width: 70px;
+      border-radius: 8px;
     }
   }
 }

@@ -29,7 +29,7 @@ export class DashboardComponent {
   inputCharacter: string = '';
   pokemonsList: IPokemonCharacter[] = [];
   pokemonFavorites: IPokemonCharacter[] = [];
-  limit: number = 10;
+  limit: number = 4;
   page: number = 1;
   private readonly pokemonService = inject(PokemonService);
   pokemonSelected: IPokemonCharacter | null = null;

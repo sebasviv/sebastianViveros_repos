@@ -7,6 +7,7 @@ import Nora from '@primeng/themes/nora';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { routes } from './app.routes';
+import MyPreset from './theme/mypreset';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     providePrimeNG({
       theme: {
-        preset: Nora,
+        preset: MyPreset,
+        options: {
+          prefix: 'p',
+          darkModeSelector: 'none',
+          cssLayer: false
+      }
       },
     }),
   ],

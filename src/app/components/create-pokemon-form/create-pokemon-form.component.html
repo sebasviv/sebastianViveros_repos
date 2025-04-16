@@ -1,43 +1,127 @@
-<p>create-pokemon-form works!</p>
-<div>
-  <form [formGroup]="pokemonForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-4">
-    <div class="card flex justify-center gap-4">
-      <p-floatlabel>
-        <input pInputText id="name" formControlName="name" autocomplete="off" />
-        <label for="name">Nombre</label>
-      </p-floatlabel>
-      <p-select [options]="pokemonTypes" formControlName="type" optionLabel="label" optionValue="value"
-        placeholder="Seleccione el tipo" class="w-full md:w-56" />
-      <p-select [options]="pokemonWeights" formControlName="weight" optionLabel="label" optionValue="value"
-        placeholder="Seleccione el peso" class="w-full md:w-56" />
-
-      <h2>Sprites</h2>
-      <div class="d-flex flex-column gap-4">
-        <p-floatlabel>
-          <input pInputText id="sprite_front_default" formControlName="sprite_front_default" autocomplete="off" />
-          <label for="sprite_front_default">Front Default</label>
-        </p-floatlabel>
-        <p-floatlabel>
-          <input pInputText id="sprite_back_default" formControlName="sprite_back_default" autocomplete="off" />
-          <label for=" sprite_back_default">Back Default</label>
-        </p-floatlabel>
-        <p-floatlabel>
-          <input pInputText id="sprite_front_shiny" formControlName="sprite_front_shiny" autocomplete="off" />
-          <label for="sprite_front_shiny">Front Shiny</label>
-        </p-floatlabel>
-        <p-floatlabel>
-          <input pInputText id="sprite_back_shiny" formControlName="sprite_back_shiny" autocomplete="off" />
-          <label for="sprite_back_shiny">Back Shiny</label>
-        </p-floatlabel>
-      </div>
-      <p-select [options]="pokemonMoves" formControlName="move" optionLabel="label" optionValue="value"
-        placeholder="Seleccione el movimiento" class="w-full md:w-56" />
+<div class="pokemon-form mt-5">
+  <div class="mt-3 mb-3">
+    <h3>Crea tu propio pokemon!</h3>
+  </div>
+  <form
+    [formGroup]="pokemonForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-column gap-2"
+  >
+    <div class="d-flex flex-column justify-center gap-3">
+      <p-card>
+        <div class="d-flex flex-column">
+          <label for="name">ID</label>
+          <input
+            pInputText
+            readonly
+            id="id"
+            autocomplete="off"
+            [value]="pokemonId"
+          />
+        </div>
+      </p-card>
+      <p-card>
+        <div class="d-flex flex-column gap-2">
+          <div class="d-flex flex-column">
+            <label for="name">Nombre</label>
+            <input
+              pInputText
+              id="name"
+              formControlName="name"
+              autocomplete="off"
+              placeholder="Ingresa el nombre de tu pokemon"
+            />
+          </div>
+          <div>
+            <label>Tipo</label>
+            <p-select
+              [options]="pokemonTypes"
+              formControlName="type"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Seleccione el tipo"
+              class="w-full md:w-56"
+            />
+          </div>
+          <div class="d-flex flex-column">
+            <label>Peso</label>
+            <p-select
+              [options]="pokemonWeights"
+              formControlName="weight"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Seleccione el peso"
+              class="w-full md:w-56"
+            />
+          </div>
+          <div class="d-flex flex-column">
+            <label>Movimiento</label>
+            <p-select
+              [options]="pokemonMoves"
+              formControlName="move"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Seleccione el movimiento"
+              class="w-full md:w-56"
+            />
+          </div>
+        </div>
+      </p-card>
+      <p-card>
+        <label>Sprites</label>
+        <div class="d-flex flex-column gap-4">
+          <div class="d-flex flex-column">
+            <input
+              pInputText
+              id="sprite_front_default"
+              formControlName="sprite_front_default"
+              autocomplete="off"
+              placeholder="Ingresa la url de tu sprite: front default"
+            />
+          </div>
+          <div class="d-flex flex-column">
+            <input
+              pInputText
+              id="sprite_back_default"
+              formControlName="sprite_back_default"
+              autocomplete="off"
+              placeholder="Ingresa la url de tu sprite: back default"
+            />
+          </div>
+          <div class="d-flex flex-column">
+            <input
+              pInputText
+              id="sprite_front_shiny"
+              formControlName="sprite_front_shiny"
+              autocomplete="off"
+              placeholder="Ingresa la url de tu sprite: front shiny"
+            />
+          </div>
+          <div class="d-flex flex-column">
+            <input
+              pInputText
+              id="sprite_back_shiny"
+              formControlName="sprite_back_shiny"
+              autocomplete="off"
+              placeholder="Ingresa la url de tu sprite: back shiny"
+            />
+          </div>
+        </div>
+      </p-card>
     </div>
 
-    <div class="card flex justify-center gap-4 mt-4">
-      <p-button label="Crear Pokemon" icon="pi pi-check" type="submit"
-        [disabled]="!pokemonForm.valid"></p-button>
-      <p-button label="Limpiar" icon="pi pi-refresh" (click)="onReset()"></p-button>
+    <div class="d-flex flex-row justify-content-center gap-4 mt-4 mb-4">
+      <p-button
+        label="Crear Pokemon"
+        icon="pi pi-check"
+        type="submit"
+        [disabled]="!pokemonForm.valid"
+      ></p-button>
+      <p-button
+        label="Limpiar"
+        icon="pi pi-refresh"
+        (click)="onReset()"
+      ></p-button>
     </div>
   </form>
 </div>

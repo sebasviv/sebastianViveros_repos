@@ -19,6 +19,7 @@ export class PokemonCardComponent {
   @Input() extraData: IPokemonData | undefined = undefined;
   @Input() backgroundColor: string = 'yellow';
 
+  expandMoves: boolean = false;
   backgroundColors: { name: string; color: string; border: string }[] = [
     {
       name: 'green',

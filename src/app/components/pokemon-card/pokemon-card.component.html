@@ -7,7 +7,7 @@
   >
     <ng-template #header>
       <div class="d-flex justify-content-center align-items-center">
-        <img alt="Card" class="pokemon-img" [src]="imageUrl" />
+        <img loading="lazy" alt="Card" class="pokemon-img" [src]="imageUrl" />
       </div>
     </ng-template>
     <ng-template #title
@@ -24,15 +24,49 @@
       <div class="flex flex-column align-items-start text-start gap-3 mt-5">
         <span><strong>Tipo de personaje:</strong> {{ extraData.type }}</span>
         <span><strong>Peso:</strong> {{ extraData.weight + " kg" }}</span>
+        <div>
+          <span><strong>Movimientos:</strong></span>
+          <div
+            class="d-flex flex-column align-items-center justify-content-center gap-2"
+          >
+            <ul *ngIf="extraData.moves?.length">
+              <li
+                *ngFor="
+                  let move of expandMoves
+                    ? extraData.moves
+                    : extraData.moves.slice(0, 10)
+                "
+                class="text-start"
+              >
+                {{ move.move.name }}
+              </li>
+            </ul>
+            <button
+              *ngIf="extraData.moves.length > 10"
+              class="mt-2 btn btn-link p-0"
+              (click)="expandMoves = !expandMoves"
+            >
+              {{ expandMoves ? "Mostrar menos" : "Mostrar todos" }}
+            </button>
+          </div>
+        </div>
         <div
           *ngIf="extraData?.sprites"
           class="flex flex-row align-items-center justify-content-center custom-sprites gap-2"
         >
           <span><strong>Sprites:</strong></span>
-          <img [src]="extraData.sprites.front_default" alt="" />
-          <img [src]="extraData.sprites.back_default" alt="" />
-          <img [src]="extraData.sprites.back_shiny" alt="" />
-          <img [src]="extraData.sprites.front_shiny" alt="" />
+          <div
+            class="d-flex flex-row align-items-center justify-content-center gap-2 images-container"
+          >
+            <img
+              loading="lazy"
+              [src]="extraData.sprites.front_default"
+              alt=""
+            />
+            <img loading="lazy" [src]="extraData.sprites.back_default" alt="" />
+            <img loading="lazy" [src]="extraData.sprites.back_shiny" alt="" />
+            <img loading="lazy" [src]="extraData.sprites.front_shiny" alt="" />
+          </div>
         </div>
       </div>
     </ng-template>

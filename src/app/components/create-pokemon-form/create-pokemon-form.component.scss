@@ -1,0 +1,49 @@
+.pokemon-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--p-select-placeholder-color);
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    border: none;
+
+    input {
+      color: var(--p-select-placeholder-color);
+      padding: var(--p-select-padding-y) var(--p-select-padding-x);
+      border-radius: var(--p-select-border-radius);
+      background: var(--p-select-background);
+      border: 1px solid var(--p-select-border-color);
+
+      &:focus {
+        border: 1px solid var(--p-select-focus-border-color);
+        box-shadow: var(--p-select-focus-box-shadow);
+        outline: none;
+      }
+
+      &::placeholder {
+        color: var(--p-select-placeholder-color);
+        opacity: 1;
+      }
+    }
+
+    label {
+      color: var(--p-select-placeholder-color);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-card {
+    background-color: rgba(253, 253, 168, 0.63);
+  }
+
+}

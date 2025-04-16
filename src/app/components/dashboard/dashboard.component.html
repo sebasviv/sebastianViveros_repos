@@ -2,7 +2,13 @@
   <div class="container">
     <div class="mb-5">
       <div class="d-flex flex-column align-items-center justify-content-center">
-        <img src="/assets/logo.png" class="img-fluid" width="400px" alt="" />
+        <img
+          loading="lazy"
+          src="/assets/logo.png"
+          class="img-fluid"
+          width="400px"
+          alt=""
+        />
       </div>
       <div class="d-flex gap-2 align-items-center">
         <input
@@ -24,7 +30,9 @@
       <div [style.width]="pokemonSelected ? '65%' : '100%'" class="p-0 h-100">
         <div
           class="d-flex flex-wrap gap-5 align-items-center"
-          [class]="pokemonSelected ? 'justify-content-start' : 'justify-content-center'"
+          [class]="
+            pokemonSelected ? 'justify-content-start' : 'justify-content-center'
+          "
         >
           <div
             *ngFor="let pokemon of pokemonsList; let i = index"

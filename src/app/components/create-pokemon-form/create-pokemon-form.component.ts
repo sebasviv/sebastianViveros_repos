@@ -13,6 +13,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
 import { IPokemonCharacter } from '../../models/pokemon.model';
 import { totalPokemonCount } from '../../shared/signals/pokemon-signals';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-create-pokemon-form',
@@ -24,6 +25,7 @@ import { totalPokemonCount } from '../../shared/signals/pokemon-signals';
     SelectModule,
     FloatLabelModule,
     ButtonModule,
+    CardModule,
   ],
   standalone: true,
   templateUrl: './create-pokemon-form.component.html',
@@ -109,7 +111,7 @@ export class CreatePokemonFormComponent {
 
   handleGetIdPokemon() {
     const idSignal = computed(() => totalPokemonCount());
-  
+
     if (idSignal() == 0) {
       window.location.replace('/home');
     }

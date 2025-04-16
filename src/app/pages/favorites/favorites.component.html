@@ -1,11 +1,42 @@
-<div class="row">
-  <div class="p-0 ">
-    <p-card header="Simple Card" class="bg-blue-100">
-      <div class="d-flex flex-wrap gap-3 justify-content-center align-items-center mt-5">
-        <div *ngFor="let pokemon of pokemons">
-          <app-pokemon-card [id]="pokemon.id" [name]="pokemon.name" [imageUrl]="pokemon.imageUrl"></app-pokemon-card>
+<div
+  class="d-flex flex-column align-items-center justify-content-center bg-blue-100 create-character-container"
+>
+  <img
+    loading="lazy"
+    src="/assets/logo.png"
+    class="img-fluid"
+    width="400px"
+    alt=""
+  />
+</div>
+<div class="bg-blue-300 h-100">
+  <div class="container">
+
+    <div class="favorites-container pt-5">
+      <div class="d-flex flex-column align-items-center justify-content-center pb-4">
+        <h2>Aqui puedes encontrar tus Pokemon creados!</h2>
+      </div>
+      <div class="d-flex flex-row justify-content-center align-items-center gap-2 mb-5">
+        <div *ngFor="let pokemon of pokemons; let i = index" class="p-2">
+          <app-pokemon-card
+            [id]="pokemon.id"
+            [name]="pokemon.name"
+            [imageUrl]="pokemon.imageUrl"
+            [extraData]="pokemon.extraData"
+            [backgroundColor]="
+              i === 0
+                ? 'green'
+                : i === 1
+                ? 'orange'
+                : i === 2
+                ? 'red'
+                : i === 3
+                ? 'gray'
+                : 'red'
+            "
+          ></app-pokemon-card>
         </div>
       </div>
-    </p-card>
+    </div>
   </div>
 </div>

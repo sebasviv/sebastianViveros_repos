@@ -159,6 +159,7 @@ export class CreatePokemonFormComponent {
     };
     this.pokemonsList.push(pokemonData);
     localStorage.setItem('myPokemons', JSON.stringify(this.pokemonsList));
+    window.location.replace('/favorites');
   }
 
   onReset() {

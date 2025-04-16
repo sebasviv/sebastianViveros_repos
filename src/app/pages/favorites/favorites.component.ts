@@ -33,4 +33,9 @@ export class FavoritesComponent {
 
     this.pokemons = pokemonsData;
   }
+
+  handleClearFavorites() {
+    localStorage.removeItem('myPokemons');
+    this.pokemons = [];
+  }
 }
